@@ -1,0 +1,37 @@
+{
+  "name": "@adobe/mas-studio",
+  "version": "0.0.1",
+  "description": "Merch at Scale Studio",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "wtr --config ./web-test-runner.config.mjs --coverage --watch --debug",
+    "test:ci": "wtr --config ./web-test-runner.config.mjs  --debug"
+  },
+  "type": "module",
+  "main": "src/index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@adobe/lit-mobx": "^2.2.2",
+    "@spectrum-web-components/action-button": "^0.43.0",
+    "@spectrum-web-components/action-menu": "^0.43.0",
+    "@spectrum-web-components/button": "^0.43.0",
+    "@spectrum-web-components/button-group": "^0.43.0",
+    "@spectrum-web-components/checkbox": "^0.43.0",
+    "@spectrum-web-components/dialog": "^0.43.0",
+    "@spectrum-web-components/link": "^0.43.0",
+    "@spectrum-web-components/search": "^0.43.0",
+    "@spectrum-web-components/theme": "^0.43.0",
+    "@spectrum-web-components/tooltip": "^0.43.0",
+    "@spectrum-web-components/menu": "^0.43.0",
+    "lit": "^3.1.4",
+    "mobx": "^6.12.4"
+  },
+  "devDependencies": {
+    "@web/test-runner": "^0.13.27",
+    "@web/test-runner-commands": "^0.6.1",
+    "esbuild": "^0.21.5",
+    "esbuild-node-externals": "^1.13.1"
+  }
+}

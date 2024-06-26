@@ -1,0 +1,63 @@
+mas-search {
+    margin: 64px;
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  merch-card {
+    position: relative;
+  }
+  
+  mas-search > ul > li {
+    list-style: none;
+    position: relative;
+    border-top: 1px dodgerblue solid;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+  }
+    
+  mas-search .block {
+    margin-top: 64px;
+  }
+  
+  mas-search p.path {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    white-space: nowrap;
+    margin: 0;
+  }
+  
+  mas-search sp-action-group {
+    position: absolute;
+    top: 16px;
+    right: 0;
+  }
+  
+  mas-search > ul {
+    width: 80%;
+  }
+  
+  div[data-cf-path] {
+    margin: 60px 0 10px;
+  }
+  
+  sp-action-button#confirm {
+    margin-left: 16px;
+  }
+  
+  sp-textfield {
+    width: 360px;
+  }
+  
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+  }
+  

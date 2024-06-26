@@ -1,15 +1,33 @@
 {
     "name": "@adobe/mas",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "private": true,
-    "workspaces": ["web-components", "commerce"],
+    "workspaces": [
+        "web-components",
+        "commerce",
+        "studio",
+        "aue-properties-integration"
+    ],
     "scripts": {
+        "lint": "eslint",
         "validate:ci": "npm run validate:commerce && npm run validate:web-components",
         "validate:commerce": "cd commerce && npm run test:ci && npm run build",
-        "validate:web-components": "cd web-components && npm run test:ci && npm run build"
+        "validate:web-components": "cd web-components && npm run test:ci && npm run build",
+        "start": "aem up --addr local.adobe.com --tls-cert ../server.pem --tls-key ../server.key"
     },
     "repository": {
         "type": "git",
         "url": "git@github.com:adobecom/mas.git"
+    },
+    "devDependencies": {
+        "@esm-bundle/chai-as-promised": "7.1.1",
+        "@esm-bundle/chai": "4.3.4-fix.0",
+        "@types/chai-as-promised": "7.1.5",
+        "@types/sinon": "10.0.15",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.1.3",
+        "eslint": "^9.5.0",
+        "prettier": "^3.3.2",
+        "sinon": "13.0.1"
     }
 }

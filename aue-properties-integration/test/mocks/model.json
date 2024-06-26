@@ -1,0 +1,280 @@
+{
+    "data": {
+        "contentFragmentModel": {
+            "body": {
+                "content": {
+                    "id": "L2NvbmYvc2FuZGJveC9zZXR0aW5ncy9kYW0vY2ZtL21vZGVscy9tZXJjaC1jYXJk",
+                    "path": "/conf/sandbox/settings/dam/cfm/models/merch-card",
+                    "name": "Merch Card",
+                    "description": "content for adobe.com merch-card web component.",
+                    "created": {
+                        "at": "2024-05-02T16:46:52.928Z",
+                        "by": "tuerkben@adobe.com"
+                    },
+                    "modified": {
+                        "at": "2024-06-07T10:26:07.231Z",
+                        "by": "tuerkben@adobe.com"
+                    },
+                    "published": {
+                        "at": "2024-06-07T10:29:48.77Z",
+                        "by": "tuerkben@adobe.com"
+                    },
+                    "locked": false,
+                    "status": "enabled",
+                    "fields": [
+                        {
+                            "component": "select",
+                            "valueType": "string",
+                            "name": "type",
+                            "label": "Type",
+                            "multi": false,
+                            "raw": {
+                                "listOrder": 6,
+                                "valueType": "string",
+                                "name": "type",
+                                "metaType": "enumeration",
+                                "fieldLabel": "Type",
+                                "multifield": false,
+                                "options": [
+                                    {
+                                        "name": "Catalog Card",
+                                        "value": "catalog"
+                                    },
+                                    {
+                                        "name": "Special Offers Card",
+                                        "value": "special-offers"
+                                    },
+                                    {
+                                        "name": "Plans Card",
+                                        "value": "plans"
+                                    },
+                                    {
+                                        "name": "Adobe Home",
+                                        "value": "ah"
+                                    },
+                                    {
+                                        "name": "CCD Action Card",
+                                        "value": "ccd-action"
+                                    }
+                                ],
+                                "emptyOption": true,
+                                "renderAs": "select"
+                            },
+                            "emptyOption": true,
+                            "options": [
+                                {
+                                    "name": "Catalog Card",
+                                    "value": "catalog"
+                                },
+                                {
+                                    "name": "Special Offers Card",
+                                    "value": "special-offers"
+                                },
+                                {
+                                    "name": "Plans Card",
+                                    "value": "plans"
+                                },
+                                {
+                                    "name": "Adobe Home",
+                                    "value": "ah"
+                                },
+                                {
+                                    "name": "CCD Action Card",
+                                    "value": "ccd-action"
+                                }
+                            ]
+                        },
+                        {
+                            "component": "text",
+                            "valueType": "string",
+                            "name": "icon",
+                            "label": "icon",
+                            "multi": true,
+                            "raw": {
+                                "listOrder": 1,
+                                "valueType": "string",
+                                "name": "icon",
+                                "metaType": "text-single",
+                                "fieldLabel": "icon",
+                                "multifield": true,
+                                "maxItems": 2,
+                                "maxLength": 255
+                            },
+                            "validation": {
+                                "maxLength": 255
+                            }
+                        },
+                        {
+                            "component": "text",
+                            "valueType": "string",
+                            "name": "name",
+                            "label": "Card name",
+                            "description": "technical name used for sorting, deeplinking, etc.",
+                            "multi": false,
+                            "raw": {
+                                "listOrder": 1,
+                                "valueType": "string",
+                                "name": "name",
+                                "metaType": "text-single",
+                                "fieldLabel": "Card name",
+                                "fieldDescription": "technical name used for sorting, deeplinking, etc.",
+                                "multifield": false,
+                                "maxLength": 255
+                            },
+                            "validation": {
+                                "maxLength": 255
+                            }
+                        },
+                        {
+                            "component": "text",
+                            "valueType": "string",
+                            "name": "title",
+                            "label": "Card title",
+                            "required": true,
+                            "multi": false,
+                            "raw": {
+                                "listOrder": 1,
+                                "valueType": "string",
+                                "name": "title",
+                                "metaType": "text-single",
+                                "fieldLabel": "Card title",
+                                "required": true,
+                                "multifield": false,
+                                "maxLength": 255
+                            },
+                            "validation": {
+                                "maxLength": 255
+                            }
+                        },
+                        {
+                            "component": "text",
+                            "valueType": "string",
+                            "name": "link",
+                            "label": "Link",
+                            "multi": false,
+                            "raw": {
+                                "listOrder": 1,
+                                "valueType": "string",
+                                "name": "link",
+                                "metaType": "text-single",
+                                "fieldLabel": "Link",
+                                "multifield": false,
+                                "maxLength": 255,
+                                "validation": "url"
+                            },
+                            "validation": {
+                                "maxLength": 255
+                            }
+                        },
+                        {
+                            "component": "richtext",
+                            "valueType": "string",
+                            "name": "prices",
+                            "label": "prices",
+                            "multi": false,
+                            "raw": {
+                                "listOrder": 2,
+                                "valueType": "string",
+                                "name": "prices",
+                                "metaType": "text-multi",
+                                "fieldLabel": "prices",
+                                "multifield": false,
+                                "defaultMimeType": "text/html"
+                            },
+                            "validation": {},
+                            "mimeType": "text/html"
+                        },
+                        {
+                            "component": "richtext",
+                            "valueType": "string",
+                            "name": "description",
+                            "label": "description",
+                            "required": true,
+                            "multi": false,
+                            "raw": {
+                                "listOrder": 2,
+                                "valueType": "string",
+                                "name": "description",
+                                "metaType": "text-multi",
+                                "fieldLabel": "description",
+                                "required": true,
+                                "multifield": false,
+                                "defaultMimeType": "text/html"
+                            },
+                            "validation": {},
+                            "mimeType": "text/html"
+                        },
+                        {
+                            "component": "boolean",
+                            "valueType": "boolean",
+                            "name": "secure",
+                            "value": true,
+                            "label": "Show secure transaction",
+                            "multi": false,
+                            "raw": {
+                                "listOrder": 4,
+                                "valueType": "boolean",
+                                "name": "secure",
+                                "metaType": "boolean",
+                                "fieldLabel": "Show secure transaction",
+                                "multifield": false,
+                                "value": true
+                            },
+                            "validation": {}
+                        },
+                        {
+                            "component": "boolean",
+                            "valueType": "boolean",
+                            "name": "stock",
+                            "value": true,
+                            "label": "Add stock checkbox",
+                            "multi": false,
+                            "raw": {
+                                "listOrder": 4,
+                                "valueType": "boolean",
+                                "name": "stock",
+                                "metaType": "boolean",
+                                "fieldLabel": "Add stock checkbox",
+                                "multifield": false,
+                                "value": true
+                            },
+                            "validation": {}
+                        },
+                        {
+                            "component": "richtext",
+                            "valueType": "string",
+                            "name": "ctas",
+                            "label": "ctas",
+                            "required": true,
+                            "multi": false,
+                            "raw": {
+                                "listOrder": 2,
+                                "valueType": "string",
+                                "name": "ctas",
+                                "metaType": "text-multi",
+                                "fieldLabel": "ctas",
+                                "required": true,
+                                "multifield": false,
+                                "defaultMimeType": "text/html"
+                            },
+                            "validation": {},
+                            "mimeType": "text/html"
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "id": "properties:fullyhydrated",
+                            "title": "fullyhydrated",
+                            "i18n": [],
+                            "titlePath": "Asset Properties : fullyhydrated",
+                            "name": "fullyhydrated",
+                            "path": "/content/cq:tags/properties/fullyhydrated",
+                            "description": "Fully Hydrated"
+                        }
+                    ],
+                    "previewUrlPattern": "https://previewproxy-dev.stage.cloud.adobe.io${contentFragment.path}.cfm.gql.json"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "aue-properties-integration",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "wtr --config ./web-test-runner.config.mjs --coverage --watch --debug",
+    "test:ci": "wtr --config ./web-test-runner.config.mjs  --debug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@adobe/react-spectrum": "^3.35.1",
+    "@aem-sites/commons-shell": "^3.0.3",
+    "@aem-sites/headless-canvas": "^1.0.2",
+    "@aem-sites/headless-canvas-adapters": "^0.1.21",
+    "events": "^3.3.0",
+    "immer": "^10.1.1",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@web/test-runner": "^0.13.27",
+    "@web/test-runner-commands": "^0.6.1",
+    "esbuild": "^0.21.5",
+    "esbuild-node-externals": "^1.13.1"
+  }
+}
