@@ -1,5 +1,6 @@
-import { action, makeObservable, observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { Fragment } from './Fragment.js';
+import { pushState } from '@adobe/mas-commons/src/deeplink.js';
 
 export class Search {
     /** @type {string|undefined} Search query (the text the user entered) */
@@ -25,12 +26,8 @@ export class Search {
      */
     result = [];
 
-    constructor(params) {
-        Object.assign(this, params);
-        makeObservable(this, {
-            result: observable,
-            setResult: action,
-        });
+    constructor() {
+        makeAutoObservable(this);
     }
 
     /**
@@ -39,5 +36,10 @@ export class Search {
      */
     setResult(result) {
         this.result = result;
+    }
+
+    update(props) {
+        Object.assign(this, props);
+        pushState(props);
     }
 }

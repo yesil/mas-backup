@@ -1,7 +1,9 @@
 import { html, LitElement, css } from 'lit';
-import { pushStateFromComponent, parseState } from './deeplink';
 import { debounce } from './utils';
-import { deeplink } from './deeplink.js';
+import {
+    pushStateFromComponent,
+    parseState,
+} from '@adobe/mas-commons/src/deeplink.js';
 
 export class MerchSearch extends LitElement {
     static properties = {

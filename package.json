@@ -4,6 +4,7 @@
     "private": true,
     "workspaces": [
         "commerce",
+        "commons",
         "studio",
         "web-components"
     ],

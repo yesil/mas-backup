@@ -1,4 +1,4 @@
-mas-search {
+mas-studio {
     margin: 64px;
     display: flex;
     gap: 8px;
@@ -11,7 +11,7 @@ mas-search {
     position: relative;
   }
   
-  mas-search > ul > li {
+  mas-studio > ul > li {
     list-style: none;
     position: relative;
     border-top: 1px dodgerblue solid;
@@ -20,11 +20,11 @@ mas-search {
     justify-content: center;
   }
     
-  mas-search .block {
+  mas-studio .block {
     margin-top: 64px;
   }
   
-  mas-search p.path {
+  mas-studio p.path {
     position: absolute;
     top: 16px;
     left: 0;
@@ -32,13 +32,13 @@ mas-search {
     margin: 0;
   }
   
-  mas-search sp-action-group {
+  mas-studio sp-action-group {
     position: absolute;
     top: 16px;
     right: 0;
   }
   
-  mas-search > ul {
+  mas-studio > ul {
     width: 80%;
   }
   

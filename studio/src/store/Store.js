@@ -7,8 +7,7 @@ export class Store {
     /**
      * @type {Search}
      */
-    search;
-
+    search = new Search();
     /**
      * @type {import('../aem.js').AEMClient}
      */
@@ -26,7 +25,7 @@ export class Store {
     }
 
     async doSearch(props) {
-        this.search = new Search(props);
+        this.search.update(props);
         await this.aem.sites.cf.fragments.search(this.search);
     }
 }
