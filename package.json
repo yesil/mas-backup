@@ -3,10 +3,9 @@
     "version": "0.0.1",
     "private": true,
     "workspaces": [
-        "web-components",
         "commerce",
         "studio",
-        "aue-properties-integration"
+        "web-components"
     ],
     "scripts": {
         "lint": "eslint",
