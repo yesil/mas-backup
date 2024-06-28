@@ -1,4 +1,5 @@
 import { chromeLauncher } from '@web/test-runner-chrome';
+import { importMapsPlugin } from '@web/dev-server-import-maps';
 
 const testRunnerHtml = (testFramework) => `
   <html>
@@ -24,6 +25,18 @@ export default {
         exclude: ['test/mocks/**', 'test/**', '**/node_modules/**'],
     },
     files: ['test/**/*.test.(js|html)'],
+    plugins: [
+        importMapsPlugin({
+            inject: {
+                importMap: {
+                    imports: {
+                        react: '/test/mocks/react.js',
+                        '@pandora/fetch': '/test/mocks/pandora-fetch.js',
+                    },
+                },
+            },
+        }),
+    ],
     nodeResolve: true,
     port: 2023,
     testRunnerHtml,

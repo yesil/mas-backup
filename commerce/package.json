@@ -1,5 +1,5 @@
 {
-    "name": "@wcms/commerce",
+    "name": "@adobe/mas-commerce",
     "version": "2.0.0",
     "files": [
         "lib",

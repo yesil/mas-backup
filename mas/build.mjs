@@ -1,5 +1,6 @@
 import { build } from 'esbuild';
 import fs from 'node:fs';
+
 import { execSync } from 'node:child_process';
 
 // Get the current commit hash
@@ -16,13 +17,12 @@ const { metafile } = await build({
         js: `// branch: ${branch} commit: ${commitHash} ${new Date().toUTCString()}`,
     },
     bundle: true,
-    entryPoints: ['./src/index.js'],
+    entryPoints: ['./src/mas.js'],
     format: 'esm',
     metafile: true,
     minify: true,
-    outfile: '../lib/commerce.js',
+    outfile: '../mas.js',
     platform: 'browser',
-    sourcemap: true,
     target: ['es2020'],
 });
 

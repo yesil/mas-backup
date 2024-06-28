@@ -72,7 +72,7 @@ export class MerchCard extends LitElement {
                                     size,
                                 },
                             ];
-                        })
+                        }),
                     );
                 },
                 toAttribute: (value) => {
@@ -80,7 +80,7 @@ export class MerchCard extends LitElement {
                         .map(([key, { order, size }]) =>
                             [key, order, size]
                                 .filter((v) => v != undefined)
-                                .join(':')
+                                .join(':'),
                         )
                         .join(',');
                 },
@@ -117,7 +117,7 @@ export class MerchCard extends LitElement {
         }
         this.updateComplete.then(async () => {
             const prices = Array.from(
-                this.querySelectorAll('span[is="inline-price"][data-wcs-osi]')
+                this.querySelectorAll('span[is="inline-price"][data-wcs-osi]'),
             );
             await Promise.all(prices.map((price) => price.onceSettled()));
             this.adjustTitleWidth();
@@ -247,7 +247,7 @@ export class MerchCard extends LitElement {
     toggleActionMenu(e) {
         const retract = e?.type === 'mouseleave' ? true : undefined;
         const actionMenuContentSlot = this.shadowRoot.querySelector(
-            'slot[name="action-menu-content"]'
+            'slot[name="action-menu-content"]',
         );
         if (!actionMenuContentSlot) return;
         actionMenuContentSlot.classList.toggle('hidden', retract);
@@ -320,6 +320,8 @@ export class MerchCard extends LitElement {
                 return this.renderInlineHeading();
             case MINI_COMPARE_CHART:
                 return this.renderMiniCompareChart();
+            case 'ccd-action':
+                return this.renderCcdAction();
             case 'twp':
                 return this.renderTwp();
             default:
@@ -479,6 +481,18 @@ export class MerchCard extends LitElement {
             <footer><slot name="footer"></slot></footer>`;
     }
 
+    renderCcdAction() {
+        return html` <div class="body">
+            <slot name="icons"></slot> ${this.badge}
+            <slot name="heading-xs"></slot>
+            <slot name="heading-m"></slot>
+            <slot name="promo-text"></slot>
+            <slot name="body-xs"></slot>
+            <slot></slot>
+            <!-- default slot -->
+        </div>`;
+    }
+
     connectedCallback() {
         super.connectedCallback();
         this.#container = this.getContainer();
@@ -487,19 +501,19 @@ export class MerchCard extends LitElement {
         this.addEventListener('mouseleave', this.toggleActionMenu);
         this.addEventListener(
             EVENT_MERCH_QUANTITY_SELECTOR_CHANGE,
-            this.handleQuantitySelection
+            this.handleQuantitySelection,
         );
         this.addEventListener(
             EVENT_MERCH_OFFER_SELECT_READY,
             this.merchCardReady,
-            { once: true }
+            { once: true },
         );
         this.updateComplete.then(() => {
             this.merchCardReady();
         });
         this.storageOptions?.addEventListener(
             'change',
-            this.handleStorageChange
+            this.handleStorageChange,
         );
         // this.appendInvisibleSpacesToFooterLinks();
     }
@@ -509,11 +523,11 @@ export class MerchCard extends LitElement {
         this.removeEventListener('keydown', this.keydownHandler);
         this.removeEventListener(
             EVENT_MERCH_QUANTITY_SELECTOR_CHANGE,
-            this.handleQuantitySelection
+            this.handleQuantitySelection,
         );
         this.storageOptions?.removeEventListener(
             EVENT_MERCH_STORAGE_CHANGE,
-            this.handleStorageChange
+            this.handleStorageChange,
         );
     }
 
@@ -558,8 +572,8 @@ export class MerchCard extends LitElement {
         if (code === 'Tab') {
             const focusableElements = Array.from(
                 this.querySelectorAll(
-                    'a[href], button:not([disabled]), textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-                )
+                    'a[href], button:not([disabled]), textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select',
+                ),
             );
             const firstFocusableElement = focusableElements[0];
             const lastFocusableElement =
@@ -604,16 +618,16 @@ export class MerchCard extends LitElement {
         const elMinHeightPropertyName = `--consonant-merch-card-mini-compare-${name}-height`;
         const height = Math.max(
             0,
-            parseInt(window.getComputedStyle(el).height) || 0
+            parseInt(window.getComputedStyle(el).height) || 0,
         );
         const maxMinHeight =
             parseInt(
-                this.#container.style.getPropertyValue(elMinHeightPropertyName)
+                this.#container.style.getPropertyValue(elMinHeightPropertyName),
             ) || 0;
         if (height > maxMinHeight) {
             this.#container.style.setProperty(
                 elMinHeightPropertyName,
-                `${height}px`
+                `${height}px`,
             );
         }
     }
@@ -626,7 +640,7 @@ export class MerchCard extends LitElement {
         if (cardWidth === 0 || badgeWidth === 0) return;
         this.style.setProperty(
             '--consonant-merch-card-heading-xs-max-width',
-            `${Math.round(cardWidth - badgeWidth - 16)}px` // consonant-merch-spacing-xs
+            `${Math.round(cardWidth - badgeWidth - 16)}px`, // consonant-merch-spacing-xs
         );
     }
 
@@ -636,7 +650,7 @@ export class MerchCard extends LitElement {
 
         this.updateMiniCompareElementMinHeight(
             this.shadowRoot.querySelector('.top-section'),
-            'top-section'
+            'top-section',
         );
 
         const slots = [
@@ -652,21 +666,21 @@ export class MerchCard extends LitElement {
         slots.forEach((slot) =>
             this.updateMiniCompareElementMinHeight(
                 this.shadowRoot.querySelector(`slot[name="${slot}"]`),
-                slot
-            )
+                slot,
+            ),
         );
         this.updateMiniCompareElementMinHeight(
             this.shadowRoot.querySelector('footer'),
-            'footer'
+            'footer',
         );
 
         const badge = this.shadowRoot.querySelector(
-            '.mini-compare-chart-badge'
+            '.mini-compare-chart-badge',
         );
         if (badge && badge.textContent !== '') {
             this.#container.style.setProperty(
                 '--consonant-merch-card-mini-compare-top-section-mobile-height',
-                '32px'
+                '32px',
             );
         }
     }
@@ -678,18 +692,18 @@ export class MerchCard extends LitElement {
         [...footerRows.children].forEach((el, index) => {
             const height = Math.max(
                 FOOTER_ROW_MIN_HEIGHT,
-                parseInt(window.getComputedStyle(el).height) || 0
+                parseInt(window.getComputedStyle(el).height) || 0,
             );
             const maxMinHeight =
                 parseInt(
                     this.#container.style.getPropertyValue(
-                        getRowMinHeightPropertyName(index + 1)
-                    )
+                        getRowMinHeightPropertyName(index + 1),
+                    ),
                 ) || 0;
             if (height > maxMinHeight) {
                 this.#container.style.setProperty(
                     getRowMinHeightPropertyName(index + 1),
-                    `${height}px`
+                    `${height}px`,
                 );
             }
         });
@@ -703,7 +717,7 @@ export class MerchCard extends LitElement {
         const storageOption = this.storageOptions?.selected;
         if (storageOption) {
             const merchOfferSelect = this.querySelector(
-                `merch-offer-select[storage="${storageOption}"]`
+                `merch-offer-select[storage="${storageOption}"]`,
             );
             if (merchOfferSelect) return merchOfferSelect;
         }
@@ -724,7 +738,7 @@ export class MerchCard extends LitElement {
         if (this.offerSelect && !this.offerSelect.planType) return;
         // add checks for other properties if needed
         this.dispatchEvent(
-            new CustomEvent(EVENT_MERCH_CARD_READY, { bubbles: true })
+            new CustomEvent(EVENT_MERCH_CARD_READY, { bubbles: true }),
         );
     }
 
@@ -736,7 +750,7 @@ export class MerchCard extends LitElement {
             new CustomEvent(EVENT_MERCH_STORAGE_CHANGE, {
                 detail: { offerSelect },
                 bubbles: true,
-            })
+            }),
         );
     }
 

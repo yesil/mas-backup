@@ -7,7 +7,7 @@ import { mockFetch } from './mocks/fetch.js';
 import { mockLana } from './mocks/lana.js';
 
 // Import test targets
-import { init } from '@wcms/commerce';
+import { init } from '@adobe/mas-commerce';
 
 import './spectrum.js';
 import '../src/merch-icon.js';

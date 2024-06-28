@@ -42,6 +42,10 @@ export const styles = css`
         min-height: 214px;
     }
 
+    :host([variant='ccd-action']) {
+        min-width: var(--consonant-merch-card-ccd-action-width);
+    }
+
     :host([aria-selected]) {
         outline: none;
         box-sizing: border-box;

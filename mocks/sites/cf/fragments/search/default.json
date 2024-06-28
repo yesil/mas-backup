@@ -7,17 +7,17 @@
             "id": "be9aa9c6-b8e9-4058-aa6b-f0125647479a",
             "created": {
                 "at": "2024-05-08T12:05:03.588Z",
-                "by": "tuerkben@adobe.com",
+                "by": "johndoe@adobe.com",
                 "fullName": "John Doe"
             },
             "modified": {
                 "at": "2024-06-13T11:10:53.174Z",
-                "by": "tuerkben@adobe.com",
+                "by": "johndoe@adobe.com",
                 "fullName": "John Doe"
             },
             "published": {
                 "at": "2024-06-13T11:11:01.224Z",
-                "by": "tuerkben@adobe.com",
+                "by": "johndoe@adobe.com",
                 "fullName": "John Doe"
             },
             "status": "PUBLISHED",
@@ -35,7 +35,7 @@
                     "type": "text",
                     "multiple": true,
                     "values": [
-                        "https://main--cc--adobecom.hlx.live/cc-shared/assets/img/product-icons/svg/creative-cloud.svg"
+                        "/test/img/cc-logo.svg"
                     ]
                 },
                 {
@@ -66,7 +66,7 @@
                     "multiple": false,
                     "mimeType": "text/html",
                     "values": [
-                        "<p><a href=\"https://milo.adobe.com/tools/ost?osi=r_JXAnlFI7xD6FxWKl2ODvZriLYBoSL701Kd1hRyhe8&amp;type=price&amp;promo=CCI2AAUSQ22440CH&amp;seat=false&amp;old=true\">PRICE - ABM - Creative Cloud All Apps 100GB</a></p>"
+                        "<span is='inline-price' data-display-old-price='true' data-display-per-unit='false' data-promotion-code='CCI2AAUSQ22440CH' data-quantity='1' data-template='price' data-wcs-osi='r_JXAnlFI7xD6FxWKl2ODvZriLYBoSL701Kd1hRyhe8'>&nbsp;</span>"
                     ]
                 },
                 {
@@ -125,17 +125,17 @@
             "id": "d52dcff2-9dea-439e-a7a4-a53099ec9315",
             "created": {
                 "at": "2024-05-08T12:05:04.785Z",
-                "by": "tuerkben@adobe.com",
+                "by": "johndoe@adobe.com",
                 "fullName": "John Doe"
             },
             "modified": {
                 "at": "2024-06-13T11:10:20.455Z",
-                "by": "tuerkben@adobe.com",
+                "by": "johndoe@adobe.com",
                 "fullName": "John Doe"
             },
             "published": {
                 "at": "2024-06-13T11:11:01.224Z",
-                "by": "tuerkben@adobe.com",
+                "by": "johndoe@adobe.com",
                 "fullName": "John Doe"
             },
             "status": "PUBLISHED",

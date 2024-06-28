@@ -1,4 +1,4 @@
-import { sinon } from '../utilities.js';
+import { sinon } from '../commerce/test/utilities.js';
 
 const ogLana = window.lana;
 

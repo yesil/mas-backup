@@ -5,7 +5,7 @@ import { mockLana } from '/test/mocks/lana.js';
 import { mockFetch } from '/test/mocks/fetch.js';
 import { mockConfig } from '/test/mocks/config.js';
 
-import { init } from '@wcms/commerce';
+import { init } from '@adobe/mas-commerce';
 
 import './utils.js';
 

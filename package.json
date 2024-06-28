@@ -1,10 +1,13 @@
 {
-    "name": "@adobe/mas",
+    "name": "@adobe/mas-platform",
     "version": "0.0.1",
+    "type": "module",
+    "main": "mas.js",  
     "private": true,
     "workspaces": [
         "commerce",
         "commons",
+        "mas",
         "studio",
         "web-components"
     ],

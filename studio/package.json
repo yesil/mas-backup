@@ -13,8 +13,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@adobe/mas-commons": "^0.0.1",
     "@adobe/lit-mobx": "^2.2.2",
+    "@adobe/mas": "^0.0.1",
+    "@adobe/mas-commons": "^0.0.1",
+    "@adobe/mas-web-components": "^0.0.1",
     "@spectrum-web-components/action-button": "^0.43.0",
     "@spectrum-web-components/action-menu": "^0.43.0",
     "@spectrum-web-components/button": "^0.43.0",
@@ -22,14 +24,15 @@
     "@spectrum-web-components/checkbox": "^0.43.0",
     "@spectrum-web-components/dialog": "^0.43.0",
     "@spectrum-web-components/link": "^0.43.0",
+    "@spectrum-web-components/menu": "^0.43.0",
     "@spectrum-web-components/search": "^0.43.0",
     "@spectrum-web-components/theme": "^0.43.0",
     "@spectrum-web-components/tooltip": "^0.43.0",
-    "@spectrum-web-components/menu": "^0.43.0",
     "lit": "^3.1.4",
     "mobx": "^6.12.4"
   },
   "devDependencies": {
+    "@web/dev-server-import-maps": "^0.2.1",
     "@web/test-runner": "^0.13.27",
     "@web/test-runner-commands": "^0.6.1",
     "esbuild": "^0.21.5",

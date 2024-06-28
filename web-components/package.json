@@ -1,5 +1,5 @@
 {
-    "name": "@wcms/commerce-web-components",
+    "name": "@adobe/mas-web-components",
     "version": "0.0.1",
     "files": [
         "lib",
@@ -12,7 +12,7 @@
         "src/**/*"
     ],
     "scripts": {
-        "build": "node scripts/build.mjs",
+        "build": "node build.mjs",
         "copy": "cp ./lib/*.js ~/milo/libs/deps && cp ./lib/*.js.map ~/milo/libs/deps",
         "consume": "npm run build && npm run copy",
         "test": "wtr --config ./web-test-runner.config.mjs --coverage --watch --debug",

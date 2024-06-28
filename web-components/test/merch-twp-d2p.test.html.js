@@ -8,7 +8,7 @@ import { mockIms } from './mocks/ims.js';
 import { mockFetch } from '/test/mocks/fetch.js';
 import { mockConfig } from '/test/mocks/config.js';
 
-import { init } from '@wcms/commerce';
+import { init } from '@adobe/mas-commerce';
 import '../src/global.css.js';
 import '../src/merch-icon.js';
 import '../src/merch-card.js';

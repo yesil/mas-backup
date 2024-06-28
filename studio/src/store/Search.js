@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx';
 import { Fragment } from './Fragment.js';
-import { pushState } from '@adobe/mas-commons/src/deeplink.js';
 
 export class Search {
     /** @type {string|undefined} Search query (the text the user entered) */
@@ -40,6 +39,5 @@ export class Search {
 
     update(props) {
         Object.assign(this, props);
-        pushState(props);
     }
 }

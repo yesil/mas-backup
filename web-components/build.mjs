@@ -21,12 +21,13 @@ async function buildLitComponent(name) {
         format: 'esm',
         metafile: true,
         minify: true,
-        outfile: `./lib/${name}.js`,
+        platform: 'browser',
+        outfile: `../lib/${name}.js`,
         plugins: [rewriteImports()],
         sourcemap: true,
     });
 
-    writeFileSync(`./lib/${name}.json`, JSON.stringify(metafile));
+    writeFileSync(`../lib/${name}.json`, JSON.stringify(metafile));
 }
 
 Promise.all([
@@ -34,10 +35,29 @@ Promise.all([
         banner,
         bundle: true,
         stdin: { contents: '' },
-        inject: ['./src/merch-card.js', './src/merch-icon.js'],
+        inject: [
+            './src/merch-card.js',
+            './src/merch-icon.js',
+            './src/merch-datasource.js',
+        ],
         format: 'esm',
         minify: true,
-        outfile: './lib/merch-card.js',
+        outfile: '../lib/merch-card.js',
+        sourcemap: true,
+        external: ['lit'],
+    }),
+    build({
+        banner,
+        bundle: true,
+        stdin: { contents: '' },
+        inject: [
+            './src/merch-card.js',
+            './src/merch-icon.js',
+            './src/merch-datasource.js',
+        ],
+        format: 'esm',
+        minify: true,
+        outfile: '../lib/merch-card+lit.js',
         sourcemap: true,
         plugins: [rewriteImports()],
     }),
@@ -48,7 +68,7 @@ Promise.all([
         inject: ['./src/merch-offer.js', './src/merch-offer-select.js'],
         format: 'esm',
         minify: true,
-        outfile: './lib/merch-offer-select.js',
+        outfile: '../lib/merch-offer-select.js',
         sourcemap: true,
         plugins: [rewriteImports()],
     }),
@@ -59,7 +79,7 @@ Promise.all([
         format: 'esm',
         minify: true,
         plugins: [rewriteImports()],
-        outfile: './lib/merch-card-collection.js',
+        outfile: '../lib/merch-card-collection.js',
     }),
     build({
         banner,
@@ -67,13 +87,13 @@ Promise.all([
         entryPoints: ['./src/plans-modal.js'],
         format: 'esm',
         plugins: [rewriteImports()],
-        outfile: './lib/plans-modal.js',
+        outfile: '../lib/plans-modal.js',
     }),
     build({
         entryPoints: ['./src/sidenav/merch-sidenav.js'],
         bundle: true,
         banner,
-        outfile: './lib/merch-sidenav.js',
+        outfile: '../lib/merch-sidenav.js',
         format: 'esm',
         plugins: [rewriteImports()],
         external: ['lit'],
@@ -85,7 +105,7 @@ Promise.all([
     buildLitComponent('merch-twp-d2p'),
 ]).catch(() => process.exit(1));
 
-function rewriteImports() {
+function rewriteImports(rew) {
     return {
         name: 'rewrite-imports',
         setup(build) {

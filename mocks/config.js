@@ -1,4 +1,4 @@
-import { priceLiteralsURL } from './fetch.js';
+import { priceLiteralsURL } from './literals.js';
 
 export const mockConfig =
     (
@@ -7,7 +7,7 @@ export const mockConfig =
         env = {
             // replace prod with 'local' to enable debugging
             name: 'prod',
-        }
+        },
     ) =>
     () => ({
         commerce: {

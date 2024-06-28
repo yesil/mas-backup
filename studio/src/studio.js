@@ -4,10 +4,14 @@ import { EVENT_SUBMIT } from './events.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { Reaction } from 'mobx';
 import { MobxReactionUpdateCustom } from '@adobe/lit-mobx/lib/mixin-custom.js';
-import { deeplink } from '@adobe/mas-commons/src/deeplink.js';
+import { deeplink, pushState } from '@adobe/mas-commons/src/deeplink.js';
 
-const MERCH_CARD = 'merch-card';
-
+const models = {
+    merchCard: {
+        path: '/conf/sandbox/settings/dam/cfm/models/merch-card',
+        name: 'Merch Card',
+    },
+};
 class MasStudio extends MobxReactionUpdateCustom(LitElement, Reaction) {
     static styles = css`
         :host {
@@ -31,7 +35,7 @@ class MasStudio extends MobxReactionUpdateCustom(LitElement, Reaction) {
 
     connectedCallback() {
         super.connectedCallback();
-        this.store = new Store({ bucket: this.bucket });
+        this.store = new Store(this.bucket);
         this.startDeeplink();
     }
 
@@ -49,17 +53,18 @@ class MasStudio extends MobxReactionUpdateCustom(LitElement, Reaction) {
     }
 
     get result() {
-        if (!this.store.search?.result) return nothing;
+        if (this.store.search.result.length === 0) return nothing;
         return html`<ul>
             ${repeat(
                 this.store.search.result,
                 (item) => item.path,
                 (item) => {
-                    switch (item.type) {
-                        case MERCH_CARD:
+                    switch (item.model.path) {
+                        case models.merchCard.path:
                             return html`<merch-card>
                                 <merch-datasource
                                     odin
+                                    source="odin-author"
                                     path="${item.path}"
                                 ></merch-datasource>
                             </merch-card>`;
@@ -105,11 +110,15 @@ class MasStudio extends MobxReactionUpdateCustom(LitElement, Reaction) {
         `;
     }
 
-    startDeeplink() {
+    async startDeeplink() {
         this.deeplinkDisposer = deeplink(({ path, modelId, query }) => {
             this.searchText = query;
             this.store.search.update({ path, modelId });
         });
+        if (this.searchText) {
+            await this.updateComplete;
+            this.doSearch();
+        }
     }
 
     /**
@@ -124,13 +133,12 @@ class MasStudio extends MobxReactionUpdateCustom(LitElement, Reaction) {
     }
 
     async doSearch() {
-        const query = encodeURIComponent(this.searchText);
-        const modelId = encodeURIComponent(this.picker.value).replace(
-            'all',
-            '',
-        );
+        const query = this.searchText;
+        const modelId = this.picker.value.replace('all', '');
         const path = '/content/dam/sandbox/mas';
-        this.store.doSearch({ query, path, modelId });
+        const search = { query, path, modelId };
+        pushState(search);
+        this.store.doSearch(search);
     }
 }
 

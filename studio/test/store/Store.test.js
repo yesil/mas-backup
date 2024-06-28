@@ -8,12 +8,11 @@ mockFetch(withAem);
 describe('Store', () => {
     describe('Search', () => {
         it('perform a search with [query, path] params', async () => {
-            const store = new Store({ bucket: 'test' });
-            expect(store.search).to.be.undefined;
+            const store = new Store('test');
             await store.doSearch({
                 query: 'test',
             });
-            expect(store.search).to.not.undefined;
+            expect(store.search).to.exist;
             expect(store.search.result.length).eq(2);
             const [cc, ps] = store.search.result.values();
             expect(cc.path).eq('/content/dam/sandbox/mas/creative-cloud');
