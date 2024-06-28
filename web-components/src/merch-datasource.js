@@ -1,31 +1,7 @@
+import { createTag } from './utils.js';
+
 const ODIN = 'odin';
 const ODIN_AUTHOR = 'odin-author';
-
-let accessToken;
-
-class FragmentCache {
-    #fragmentCache = new Map();
-    clear() {
-        this.#fragmentCache.clear();
-    }
-    add(...items) {
-        items.forEach((item) => {
-            const { path } = item;
-            if (path) {
-                this.#fragmentCache.set(path, item);
-            }
-        });
-    }
-    has(path) {
-        return this.#fragmentCache.has(path);
-    }
-    get(path) {
-        return this.#fragmentCache.get(path);
-    }
-    remove(path) {
-        this.#fragmentCache.delete(path);
-    }
-}
 
 const cardContent = {
     catalog: {
@@ -78,13 +54,11 @@ const cardContent = {
     },
 };
 
-window.addEventListener('message', (e) => {
-    if (e.data.type === 'mas:updateAccessToken') {
-        accessToken = e.data.accessToken;
-    }
-});
-
-async function parseMerchCard(cardJson, merchCard) {
+async function parseMerchCard(item, merchCard) {
+    const cardJson = item.fields.reduce((acc, { name, multiple, values }) => {
+        acc[name] = multiple ? values : values[0];
+        return acc;
+    }, {});
     const { type = 'catalog' } = cardJson;
     const cardType = cardContent[type] || cardContent.catalog;
 
@@ -112,8 +86,8 @@ async function parseMerchCard(cardJson, merchCard) {
         );
     }
 
-    if (cardJson.prices?.html) {
-        const prices = cardJson.prices.html;
+    if (cardJson.prices) {
+        const prices = cardJson.prices;
         const headingM = createTag(
             cardType.prices.tag,
             { slot: cardType.prices.slot },
@@ -126,63 +100,46 @@ async function parseMerchCard(cardJson, merchCard) {
         createTag('p', { slot: 'body-xxs', id: 'individuals1' }, 'Desktop'),
     );
 
-    if (cardJson.description?.html) {
+    if (cardJson.description) {
         const body = createTag(
             cardType.description.tag,
             { slot: cardType.description.slot },
-            cardJson.description.html,
+            cardJson.description,
         );
         merchCard.append(body);
     }
 
-    if (cardJson.ctas?.html) {
-        let ctas = cardJson.ctas.html;
-        ctas = ctas.flatMap((cta) => {
-            cta.style.display = 'none';
-            const variant = cta.classList.contains('blue')
-                ? 'accent'
-                : 'primary';
-            const treatment = variant === 'primary' ? 'outline' : '';
-            const spButton = createTag('sp-button', {
-                variant,
-                treatment,
-                size: cardType.ctas.size,
-            });
-            spButton.innerHTML = cta.innerHTML;
-            spButton.addEventListener('click', (e) => {
-                e.stopImmediatePropagation();
-                const inApp = merchCard.getAttribute('in-app') === '';
-                if (inApp) {
-                    const [{ productArrangementCode }] = cta.value;
-                    const actionData = {
-                        type: 'deep-link',
-                        // target: `inapp://ccd?workflow=routeToPath&routePath=%2FeditPlan%3Fpa%3D${productArrangementCode}%26cli%3Dcc_desktop%26co%3DUS%26landing_page%3D${checkoutUrl}`,
-                        target: `inapp://ccd?workflow=routeToPath&routePath=%2FeditPlan%3Fpa%3D${productArrangementCode}%26cli%3Dcc_desktop%26co%3DUS%26landing_page%3Dhttps%3A%2F%2Fcommerce-stg.adobe.com%2Fstore%2Fsegmentation%26ctx%3Da`,
-                    };
-                    cta.dispatchEvent(
-                        new CustomEvent('deep-link', {
-                            detail: actionData,
-                            bubbles: true,
-                        }),
-                    );
-                } else {
-                    cta.click();
-                }
-            });
-
-            return [cta, spButton];
-        });
-        const color = merchCard.getAttribute('color') ?? 'light';
-        const theme = createTag(
-            'sp-theme',
-            { theme: 'spectrum', color, scale: 'medium' },
-            ctas,
-        );
-        theme.style.display = 'contents';
-        const footer = createTag('div', { slot: 'footer' }, theme);
+    if (cardJson.ctas) {
+        let ctas = cardJson.ctas;
+        const footer = createTag('div', { slot: 'footer' }, ctas);
         merchCard.append(footer);
     }
 }
+
+class FragmentCache {
+    #fragmentCache = new Map();
+    clear() {
+        this.#fragmentCache.clear();
+    }
+    add(...items) {
+        items.forEach((item) => {
+            const { path } = item;
+            if (path) {
+                this.#fragmentCache.set(path, item);
+            }
+        });
+    }
+    has(path) {
+        return this.#fragmentCache.has(path);
+    }
+    get(path) {
+        return this.#fragmentCache.get(path);
+    }
+    remove(path) {
+        this.#fragmentCache.delete(path);
+    }
+}
+const cache = new FragmentCache();
 
 /**
  * Custom element representing a MerchDataSource.
@@ -192,8 +149,6 @@ async function parseMerchCard(cardJson, merchCard) {
  */
 export class MerchDataSource extends HTMLElement {
     data = {};
-
-    static cache = new FragmentCache();
 
     static get observedAttributes() {
         return ['source', 'path'];
@@ -207,7 +162,7 @@ export class MerchDataSource extends HTMLElement {
         this.fetchData();
     }
 
-    addFragmen;
+    cache = cache;
 
     async fetchData() {
         const source = this.getAttribute('source') ?? ODIN;
@@ -215,7 +170,7 @@ export class MerchDataSource extends HTMLElement {
         const originalPath = path;
         if (!path) return;
 
-        const itemm = this.cache.get();
+        const itemm = cache.get(path);
         if (itemm) {
             this.data = itemm;
             this.render();

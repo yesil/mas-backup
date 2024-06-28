@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit';
+import { html, LitElement, nothing } from 'lit';
 import { sizeStyles, styles } from './merch-card.css.js';
 
 import {
@@ -481,6 +481,14 @@ export class MerchCard extends LitElement {
             <footer><slot name="footer"></slot></footer>`;
     }
 
+    get defaultSlot() {
+        const defaultSlotElement = this.querySelector(
+            ':scope > a:not([slot]),:scope > p:not([slot]),:scope > div:not([slot]),:scope > span:not([slot])',
+        );
+        if (!defaultSlotElement) return nothing;
+        return html`<slot></slot>`;
+    }
+
     renderCcdAction() {
         return html` <div class="body">
             <slot name="icons"></slot> ${this.badge}
@@ -488,8 +496,8 @@ export class MerchCard extends LitElement {
             <slot name="heading-m"></slot>
             <slot name="promo-text"></slot>
             <slot name="body-xs"></slot>
-            <slot></slot>
-            <!-- default slot -->
+            <footer><slot name="footer"></slot></footer>
+            ${this.defaultSlot}
         </div>`;
     }
 

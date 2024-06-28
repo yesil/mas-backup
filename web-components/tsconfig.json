@@ -9,5 +9,5 @@
     "outDir": "./lib",
     "target": "esnext",
   },
-  "include": ["src", "test"]
+  "include": ["src", "test", "../mocks/mas.js"]
 }

@@ -35,7 +35,7 @@
                     "type": "text",
                     "multiple": true,
                     "values": [
-                        "/test/img/cc-logo.svg"
+                        "/test/img/creative-cloud.svg"
                     ]
                 },
                 {
@@ -66,7 +66,7 @@
                     "multiple": false,
                     "mimeType": "text/html",
                     "values": [
-                        "<span is='inline-price' data-display-old-price='true' data-display-per-unit='false' data-promotion-code='CCI2AAUSQ22440CH' data-quantity='1' data-template='price' data-wcs-osi='r_JXAnlFI7xD6FxWKl2ODvZriLYBoSL701Kd1hRyhe8'>&nbsp;</span>"
+                        "<span is='inline-price' data-display-old-price='true' data-display-per-unit='false' data-promotion-code='CCI2AAUSQ22440CH' data-quantity='1' data-template='price' data-wcs-osi='r_JXAnlFI7xD6FxWKl2ODvZriLYBoSL701Kd1hRyhe8'></span>"
                     ]
                 },
                 {
@@ -100,7 +100,7 @@
                     "multiple": false,
                     "mimeType": "text/html",
                     "values": [
-                        "<p><strong><a href=\"https://milo.adobe.com/tools/ost?osi=r_JXAnlFI7xD6FxWKl2ODvZriLYBoSL701Kd1hRyhe8&amp;type=checkoutUrl&amp;promo=CCI2AAUSQ22440CH&amp;text=buy-now&amp;workflowStep=segmentation\">Buy now</a> </strong><a href=\"https://milo.adobe.com/tools/ost?osi=MV-_1XzZ6JAft_2wXu3a-z28noWUucHMdMtyIYcodak&amp;type=checkoutUrl&amp;text=buy-now\">Free trial</a></p>"
+                        "<a is='checkout-link' data-checkout-workflow='UCv3' data-checkout-workflow-step='segmentation' data-promotion-code='CCI2AAUSQ22440CH' data-quantity='1' data-wcs-osi='r_JXAnlFI7xD6FxWKl2ODvZriLYBoSL701Kd1hRyhe8' data-extra-options='{}' href='#'><span>Buy now</span></a><a is='checkout-link' data-checkout-workflow='UCv3' data-checkout-workflow-step='email' data-quantity='1'data-wcs-osi='MV-_1XzZ6JAft_2wXu3a-z28noWUucHMdMtyIYcodak' data-extra-options='{}' href='#'><span>Free trial</span></a>"
                     ]
                 }
             ],
@@ -153,7 +153,7 @@
                     "type": "text",
                     "multiple": true,
                     "values": [
-                        "https://main--cc--adobecom.hlx.live/cc-shared/assets/img/product-icons/svg/photoshop.svg"
+                        "/test/img/photoshop.svg"
                     ]
                 },
                 {
@@ -184,7 +184,7 @@
                     "multiple": false,
                     "mimeType": "text/html",
                     "values": [
-                        "<p><a href=\"https://milo.adobe.com/tools/ost?osi=A1xn6EL4pK93bWjM8flffQpfEL-bnvtoQKQAvkx574M&amp;type=price&amp;seat=false\">PRICE - ABM - Photoshop</a></p>"
+                        "<span is='inline-price' data-display-per-unit='false' data-quantity='1' data-template='price' data-wcs-osi='A1xn6EL4pK93bWjM8flffQpfEL-bnvtoQKQAvkx574M'></span>"
                     ]
                 },
                 {
@@ -218,7 +218,7 @@
                     "multiple": false,
                     "mimeType": "text/html",
                     "values": [
-                        "<p><strong><a href=\"https://milo.adobe.com/tools/ost?osi=A1xn6EL4pK93bWjM8flffQpfEL-bnvtoQKQAvkx574M&amp;type=checkoutUrl&amp;text=buy-now&amp;workflowStep=segmentation\">Buy now</a></strong><a href=\"https://milo.adobe.com/tools/ost?osi=1hCh8yGl8CeutiuzmFtB2r1nPoC0gruHuFNwIkSdME4&amp;type=checkoutUrl&amp;text=free-trial&amp;modal=true\">&nbsp;Free trial</a></p>"
+                        "<a is='checkout-link' data-checkout-workflow='UCv3' data-checkout-workflow-step='segmentation' data-promotion-code='CCI2AAUSQ22440CH' data-quantity='1' data-wcs-osi='r_JXAnlFI7xD6FxWKl2ODvZriLYBoSL701Kd1hRyhe8' data-extra-options='{}' href='#'><span>Buy now</span></a><a is='checkout-link' data-checkout-workflow='UCv3' data-checkout-workflow-step='email' data-quantity='1'data-wcs-osi='MV-_1XzZ6JAft_2wXu3a-z28noWUucHMdMtyIYcodak' data-extra-options='{}' href='#'><span>Free trial</span></a>"
                     ]
                 }
             ],
