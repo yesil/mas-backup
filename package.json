@@ -2,7 +2,7 @@
     "name": "@adobe/mas-platform",
     "version": "0.0.1",
     "type": "module",
-    "main": "mas.js",  
+    "main": "mas.js",
     "private": true,
     "workspaces": [
         "commerce",
@@ -13,14 +13,41 @@
     ],
     "scripts": {
         "lint": "eslint",
+        "test": "npm run test:ci --workspaces",
         "validate:ci": "npm run validate:commerce && npm run validate:web-components",
         "validate:commerce": "cd commerce && npm run test:ci && npm run build",
         "validate:web-components": "cd web-components && npm run test:ci && npm run build",
-        "start": "aem up --addr local.adobe.com --tls-cert ../server.pem --tls-key ../server.key"
+        "start-https": "aem up --addr local.adobe.com --tls-cert ../server.pem --tls-key ../server.key"
     },
     "repository": {
         "type": "git",
         "url": "git@github.com:adobecom/mas.git"
+    },
+    "dependencies": {
+        "@spectrum-web-components/action-button": "^0.43.0",
+        "@spectrum-web-components/action-menu": "^0.43.0",
+        "@spectrum-web-components/button-group": "^0.43.0",
+        "@spectrum-web-components/button": "^0.43.0",
+        "@spectrum-web-components/checkbox": "^0.43.0",
+        "@spectrum-web-components/dialog": "^0.43.0",
+        "@spectrum-web-components/icon": "^0.43.0",
+        "@spectrum-web-components/icons-workflow": "^0.43.0",
+        "@spectrum-web-components/icons": "^0.43.0",
+        "@spectrum-web-components/link": "^0.43.0",
+        "@spectrum-web-components/menu": "^0.43.0",
+        "@spectrum-web-components/overlay": "^0.43.0",
+        "@spectrum-web-components/popover": "^0.43.0",
+        "@spectrum-web-components/progress-circle": "^0.43.0",
+        "@spectrum-web-components/radio": "^0.43.0",
+        "@spectrum-web-components/reactive-controllers": "^0.43.0",
+        "@spectrum-web-components/search": "^0.43.0",
+        "@spectrum-web-components/sidenav": "0.42.1",
+        "@spectrum-web-components/split-button": "^0.43.0",
+        "@spectrum-web-components/tabs": "^0.43.0",
+        "@spectrum-web-components/theme": "^0.43.0",
+        "@spectrum-web-components/tooltip": "^0.43.0",
+        "@spectrum-web-components/tray": "^0.43.0",
+        "lit": "^2.8.0"
     },
     "devDependencies": {
         "@esm-bundle/chai-as-promised": "7.1.1",

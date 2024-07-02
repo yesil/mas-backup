@@ -7,9 +7,11 @@ import { definePlaceholder } from '../src/placeholder.js';
 import { initService, resetService } from '../src/service.js';
 
 import { mockConfig } from './mocks/config.js';
-import { mockFetch, unmockFetch } from './mocks/fetch.js';
+import { mockFetch } from './mocks/fetch.js';
 import { mockLana, unmockLana } from './mocks/lana.js';
+import { withLiterals } from './mocks/literals.js';
 import snapshots from './mocks/snapshots.js';
+import { withWcs } from './mocks/wcs.js';
 import { expect } from './utilities.js';
 
 /**
@@ -29,12 +31,11 @@ let fetch;
 afterEach(() => {
     document.body.innerHTML = '';
     resetService();
-    unmockFetch();
     unmockLana();
 });
 
 beforeEach(async () => {
-    fetch = await mockFetch();
+    fetch = await mockFetch(withWcs, withLiterals);
     mockLana();
 });
 

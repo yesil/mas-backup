@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node build.mjs",
     "test": "wtr --config ./web-test-runner.config.mjs --coverage --watch --debug",
-    "test:ci": "wtr --config ./web-test-runner.config.mjs  --debug"
+    "test:ci": "wtr --config ./web-test-runner.config.mjs"
   },
   "type": "module",
   "main": "src/index.js",
@@ -17,18 +17,6 @@
     "@adobe/mas": "^0.0.1",
     "@adobe/mas-commons": "^0.0.1",
     "@adobe/mas-web-components": "^0.0.1",
-    "@spectrum-web-components/action-button": "^0.43.0",
-    "@spectrum-web-components/action-menu": "^0.43.0",
-    "@spectrum-web-components/button": "^0.43.0",
-    "@spectrum-web-components/button-group": "^0.43.0",
-    "@spectrum-web-components/checkbox": "^0.43.0",
-    "@spectrum-web-components/dialog": "^0.43.0",
-    "@spectrum-web-components/link": "^0.43.0",
-    "@spectrum-web-components/menu": "^0.43.0",
-    "@spectrum-web-components/search": "^0.43.0",
-    "@spectrum-web-components/theme": "^0.43.0",
-    "@spectrum-web-components/tooltip": "^0.43.0",
-    "lit": "^3.1.4",
     "mobx": "^6.12.4"
   },
   "devDependencies": {

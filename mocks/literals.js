@@ -1,11 +1,11 @@
 export const priceLiteralsURL =
     'https://www.adobe.com/federal/commerce/price-literals.json';
 
-export async function withLiterals({}, originalFetch) {
-    const literals = await JSON.parse(
-        originalFetch('/test/mocks/literals.json').then((r) => r.text()),
+export async function withLiterals(originalFetch) {
+    const literals = await originalFetch('/test/mocks/literals.json').then(
+        (res) => res.json(),
     );
-    return async () => {
+    return async ({ href }) => {
         if (href === priceLiteralsURL) {
             return Promise.resolve({
                 ok: true,

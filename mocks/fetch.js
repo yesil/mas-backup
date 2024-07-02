@@ -16,9 +16,10 @@ export async function mockFetch(...stubs) {
             break;
         }
         if (found === false) {
-            return originalFetch(args);
+            return originalFetch(...args);
         }
         return found;
     });
     window.fetch = stub;
+    return stub;
 }

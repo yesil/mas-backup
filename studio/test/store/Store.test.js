@@ -1,11 +1,10 @@
 import { expect } from '@esm-bundle/chai';
 import { Store } from '../../src/store/Store.js';
-import { withAem } from '/test/mocks/aem.js';
-import { mockFetch } from '/test/mocks/fetch.js';
+import { withAem } from '../mocks/aem.js';
+import { mockFetch } from '../mocks/fetch.js';
 
-mockFetch(withAem);
-
-describe('Store', () => {
+describe('Store', async () => {
+    await mockFetch(withAem);
     describe('Search', () => {
         it('perform a search with [query, path] params', async () => {
             const store = new Store('test');

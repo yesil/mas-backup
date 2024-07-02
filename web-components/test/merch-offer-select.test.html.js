@@ -1,11 +1,9 @@
 import { runTests } from '@web/test-runner-mocha';
 import { expect } from '@esm-bundle/chai';
 
-import { mockLana } from '/test/mocks/lana.js';
-import { mockFetch } from '/test/mocks/fetch.js';
-import { mockConfig } from '/test/mocks/config.js';
-
-import { init } from '@adobe/mas-commerce';
+import { mockLana } from './mocks/lana.js';
+import { mockFetch } from './mocks/fetch.js';
+import { mockConfig } from './mocks/config.js';
 
 import '../src/merch-card.js';
 import '../src/merch-offer.js';
@@ -13,6 +11,9 @@ import '../src/merch-offer-select.js';
 import '../src/merch-quantity-select.js';
 
 import { delay } from './utils.js';
+import { withWcs } from './mocks/wcs.js';
+import { withLiterals } from './mocks/literals.js';
+import mas from './mocks/mas.js';
 
 function getDynamicElements(merchCard, merchOfferSelect) {
     const price = merchOfferSelect.price;
@@ -51,8 +52,8 @@ const renderCard = async (id) => {
 
 runTests(async () => {
     mockLana();
-    await mockFetch();
-    await init(mockConfig());
+    await mockFetch(withWcs, withLiterals);
+    await mas();
 
     describe('merch-offer-select web component', async () => {
         beforeEach(() => {

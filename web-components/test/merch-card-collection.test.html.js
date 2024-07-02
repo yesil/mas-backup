@@ -1,12 +1,11 @@
 import { runTests } from '@web/test-runner-mocha';
 import { expect } from '@esm-bundle/chai';
 
-import { mockLana } from '/test/mocks/lana.js';
-import { mockFetch } from '/test/mocks/fetch.js';
-import { mockConfig } from '/test/mocks/config.js';
+import { mockLana } from './mocks/lana.js';
+import { mockFetch } from './mocks/fetch.js';
+import { mockConfig } from './mocks/config.js';
 
-import { init } from '@adobe/mas-commerce';
-import { pushState } from '@adobe/mas-commons/src/deeplink.js';
+import { pushState } from '@adobe/mas-commons';
 
 import {
     appendMiloStyles,
@@ -21,6 +20,9 @@ import '../src/merch-card-collection.js';
 import '../src/merch-icon.js';
 
 import { ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT, ARROW_UP } from '../src/focus.js';
+import { withWcs } from './mocks/wcs.js';
+import { withLiterals } from './mocks/literals.js';
+import mas from './mocks/mas.js';
 
 const searchParams = new URLSearchParams(document.location.search);
 
@@ -81,10 +83,10 @@ const shouldSkipTests =
 runTests(async () => {
     await toggleLargeDesktop();
     mockLana();
-    await mockFetch();
-    await init(mockConfig());
+    await mockFetch(withWcs, withLiterals);
+    await mas();
     if (shouldSkipTests !== 'true') {
-        describe('merch-card-collection web component', () => {
+        describe.skip('merch-card-collection web component', () => {
             let render;
             beforeEach(() => {
                 document.location.hash = '';

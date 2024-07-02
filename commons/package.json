@@ -4,7 +4,7 @@
   "description": "Merch at Scale Studio commons",
   "scripts": {
     "test": "wtr --config ./web-test-runner.config.mjs --coverage --watch --debug",
-    "test:ci": "wtr --config ./web-test-runner.config.mjs  --debug"
+    "test:ci": "wtr --config ./web-test-runner.config.mjs"
   },
   "type": "module",
   "main": "src/index.js",

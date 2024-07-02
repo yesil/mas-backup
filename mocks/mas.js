@@ -6,8 +6,8 @@ const locale =
         ?.getAttribute('content') ?? 'US_en';
 
 const config = () => ({
-    env: { name: 'stage' },
-    commerce: { 'commerce.env': 'STAGE' },
+    env: { name: 'prod' },
+    commerce: { 'commerce.env': 'PROD' },
     locale: { prefix: locale },
 });
 

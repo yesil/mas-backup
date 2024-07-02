@@ -2,11 +2,9 @@
 import { runTests } from '@web/test-runner-mocha';
 import { expect } from '@esm-bundle/chai';
 
-import { mockLana } from '/test/mocks/lana.js';
-import { mockFetch } from '/test/mocks/fetch.js';
-import { mockConfig } from '/test/mocks/config.js';
-
-import { init } from '@adobe/mas-commerce';
+import { mockLana } from './mocks/lana.js';
+import { mockFetch } from './mocks/fetch.js';
+import { mockConfig } from './mocks/config.js';
 
 import '../src/merch-icon.js';
 import '../src/merch-card.js';
@@ -17,6 +15,7 @@ import '../src/merch-quantity-select.js';
 import { appendMiloStyles, delay } from './utils.js';
 import { mockIms } from './mocks/ims.js';
 import { withWcs } from './mocks/wcs.js';
+import mas from './mocks/mas.js';
 
 const skipTests = sessionStorage.getItem('skipTests');
 
@@ -24,7 +23,7 @@ runTests(async () => {
     mockIms();
     mockLana();
     await mockFetch(withWcs);
-    await init(mockConfig());
+    await mas();
     if (skipTests !== null) {
         appendMiloStyles();
         return;

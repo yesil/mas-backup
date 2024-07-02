@@ -1,9 +1,10 @@
 import { html, LitElement, css } from 'lit';
 import { debounce } from './utils';
 import {
+    deeplink,
     pushStateFromComponent,
     parseState,
-} from '@adobe/mas-commons/src/deeplink.js';
+} from '@adobe/mas-commons';
 
 export class MerchSearch extends LitElement {
     static properties = {
