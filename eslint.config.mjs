@@ -5,8 +5,10 @@ const config = {
     ignores: [
         '/node_modules/',
         '**/node_modules/**',
+        '/lib/',
         '**/lib/**',
         '**/dist/**',
+        'mas.js',
     ],
 };
 

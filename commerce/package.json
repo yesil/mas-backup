@@ -16,8 +16,7 @@
         "build:types": "cp ./src/index.d.ts ../lib/commerce.d.ts",
         "build:watch": "npm run build:bundle --watch",
         "test": "wtr --config ./web-test-runner.config.mjs --coverage --watch",
-        "test:ci": "wtr --config ./web-test-runner.config.mjs",
-        "test:file": "wtr --config ./web-test-runner.config.mjs --coverage --watch"
+        "test:ci": "wtr --config ./web-test-runner.config.mjs"
     },
     "dependencies": {
         "@dexter/tacocat-consonant-templates": "file:../deps/tacocat-consonant-templates-1.13.0.tgz",
@@ -43,6 +42,6 @@
     "repository": {
         "type": "git",
         "url": "git@github.com:adobecom/mas.git",
-        "directory": "packages/commerce"
+        "directory": "commerce"
     }
 }

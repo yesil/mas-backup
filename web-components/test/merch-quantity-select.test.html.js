@@ -24,7 +24,7 @@ runTests(async () => {
         await mas();
         describe('merch-quantity-selector web component', () => {
             const quantitySelect = document.querySelector(
-                'merch-quantity-select'
+                'merch-quantity-select',
             );
             const pickerButton =
                 quantitySelect.shadowRoot.querySelector('.picker-button');
@@ -131,7 +131,7 @@ runTests(async () => {
             it('key up event', async () => {
                 const inputField =
                     quantitySelect.shadowRoot.querySelector(
-                        '.text-field-input'
+                        '.text-field-input',
                     );
                 inputField.value = '3';
                 const event = new KeyboardEvent('keyup', {
@@ -148,7 +148,7 @@ runTests(async () => {
             it('key up event and  invalid value', async () => {
                 const inputField =
                     quantitySelect.shadowRoot.querySelector(
-                        '.text-field-input'
+                        '.text-field-input',
                     );
                 inputField.value = '-11';
                 const event = new KeyboardEvent('keyup', {
@@ -182,7 +182,7 @@ runTests(async () => {
             it('should adjust to maxInput value', async () => {
                 const inputField =
                     quantitySelect.shadowRoot.querySelector(
-                        '.text-field-input'
+                        '.text-field-input',
                     );
                 inputField.value = '300';
                 const event = new KeyboardEvent('keyup', {

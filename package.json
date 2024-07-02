@@ -12,11 +12,9 @@
         "web-components"
     ],
     "scripts": {
-        "lint": "eslint",
+        "lint": "eslint --fix",
         "test": "npm run test:ci --workspaces",
-        "validate:ci": "npm run validate:commerce && npm run validate:web-components",
-        "validate:commerce": "cd commerce && npm run test:ci && npm run build",
-        "validate:web-components": "cd web-components && npm run test:ci && npm run build",
+        "build": "npm run build --workspaces",
         "start-https": "aem up --addr local.adobe.com --tls-cert ../server.pem --tls-key ../server.key"
     },
     "repository": {
