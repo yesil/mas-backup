@@ -14,8 +14,7 @@
     "scripts": {
         "lint": "eslint --fix",
         "test": "npm run test:ci --workspaces",
-        "build": "npm run build --workspaces",
-        "start-https": "aem up --tls-cert server.crt --tls-key server.key --open https://local.adobe.com"
+        "build": "npm run build --workspaces"
     },
     "repository": {
         "type": "git",

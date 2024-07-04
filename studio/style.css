@@ -1,8 +1,6 @@
 mas-studio {
-    margin: 64px;
     display: flex;
     gap: 8px;
-    width: 100%;
     align-items: center;
     flex-direction: column;
   }
