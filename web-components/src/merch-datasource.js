@@ -1,8 +1,6 @@
 import { AEM } from '@adobe/mas-commons';
 import { createTag } from './utils.js';
 
-const ODIN = 'odin';
-const ODIN_AUTHOR = 'odin-author';
 const ATTR_AEM_BUCKET = 'aem-bucket';
 
 const cardContent = {
@@ -146,15 +144,13 @@ const cache = new FragmentCache();
 /**
  * Custom element representing a MerchDataSource.
  *
- * @attr {string} source - Specifies the data source for the component.
- *                         Possible values: "odin".
+ * @attr {string} path - fragment path
  */
 export class MerchDataSource extends HTMLElement {
     /**
      * @type {import('@adobe/mas-commons').AEM}
      */
     #aem;
-    source = ODIN;
     cache = cache;
 
     /**
@@ -193,8 +189,6 @@ export class MerchDataSource extends HTMLElement {
             this.render();
             return;
         }
-
-        if (![ODIN, ODIN_AUTHOR].includes(this.source)) return;
 
         this.render();
     }
