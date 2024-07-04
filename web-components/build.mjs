@@ -34,17 +34,11 @@ Promise.all([
     build({
         banner,
         bundle: true,
-        stdin: { contents: '' },
-        inject: [
-            './src/merch-card.js',
-            './src/merch-icon.js',
-            './src/merch-datasource.js',
-        ],
         format: 'esm',
+        entryPoints: ['./src/merch-card-all.js'],
         minify: true,
-        outfile: '../lib/merch-card.js',
+        outfile: '../lib/merch-card-all.js',
         sourcemap: true,
-        external: ['lit'],
     }),
     build({
         banner,
@@ -57,7 +51,7 @@ Promise.all([
         ],
         format: 'esm',
         minify: true,
-        outfile: '../lib/merch-card+lit.js',
+        outfile: '../lib/merch-card.js',
         sourcemap: true,
         plugins: [rewriteImports()],
     }),

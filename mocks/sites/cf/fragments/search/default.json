@@ -35,7 +35,7 @@
                     "type": "text",
                     "multiple": true,
                     "values": [
-                        "/test/img/creative-cloud.svg"
+                        "/test/mocks/img/creative-cloud.svg"
                     ]
                 },
                 {
@@ -153,7 +153,7 @@
                     "type": "text",
                     "multiple": true,
                     "values": [
-                        "/test/img/photoshop.svg"
+                        "/test/mocks/img/photoshop.svg"
                     ]
                 },
                 {

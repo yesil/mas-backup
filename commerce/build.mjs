@@ -10,7 +10,7 @@ console.log(`you're building from branch ${branch} with commit ${commitHash}`);
 
 const { metafile } = await build({
     alias: {
-        react: '../commons/src/react-shim.js',
+        react: '../mocks/react.js',
     },
     banner: {
         js: `// branch: ${branch} commit: ${commitHash} ${new Date().toUTCString()}`,

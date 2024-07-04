@@ -1,4 +1,5 @@
 import { init } from '@adobe/mas-commerce';
+import '@adobe/mas-web-components/src/merch-card-all.js';
 
 const locale =
     document

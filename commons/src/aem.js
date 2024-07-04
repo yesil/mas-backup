@@ -34,23 +34,30 @@ async function fragmentSearch({ path, query }) {
         .then(({ items }) => items);
 }
 
-/**
- *
- * @param {string} bucket
- * @returns {AEMClient}
- */
+async function getCfByPath(path) {
+    return fetch(`${this.cfFragmentsUrl}?path=${path}`, {
+        headers,
+    })
+        .then((res) => res.json())
+        .then(({ items: [item] }) => item);
+}
+
 class AEM {
     sites = {
         cf: {
-            fragments: {},
+            fragments: {
+                search: fragmentSearch.bind(this),
+                getCfByPath: getCfByPath.bind(this),
+            },
         },
     };
 
     constructor(bucket) {
-        const baseUrl = `https://${bucket}.adobeaemcloud.com/adobe/sites`;
-        this.cfSearchUrl = `${baseUrl}/cf/fragments/search`;
-        this.sites.cf.fragments.search = fragmentSearch.bind(this);
+        const baseUrl = `https://${bucket}.adobeaemcloud.com`;
+        const sitesUrl = `${baseUrl}/adobe/sites`;
+        this.cfFragmentsUrl = `${sitesUrl}/cf/fragments`;
+        this.cfSearchUrl = `${this.cfFragmentsUrl}/search`;
     }
 }
 
-export default AEM;
+export { AEM };

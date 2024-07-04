@@ -24,5 +24,6 @@ const features =
 init(config);
 
 if (features.includes('merch-card')) {
-    import('../../lib/merch-card.js');
+    const { origin } = new URL(import.meta.url);
+    import(`${origin}/lib/merch-card-all.js`);
 }

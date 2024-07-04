@@ -1,8 +1,10 @@
 import { makeObservable, observable } from 'mobx';
 import { Search } from './Search.js';
 
-import AEM from '@adobe/mas-commons/src/aem.js';
+import { AEM } from '@adobe/mas-commons';
 import { Fragment } from './Fragment.js';
+
+let merchDataSourceCache;
 
 export class Store {
     /**
@@ -10,7 +12,7 @@ export class Store {
      */
     search = new Search();
     /**
-     * @type {import('@adobe/mas-commons/src/aem.js').AEMClient}
+     * @type {import('@adobe/mas-commons').AEM}
      */
     aem;
 
@@ -23,13 +25,18 @@ export class Store {
             search: observable,
         });
         this.aem = new AEM(bucket);
+        ({ cache: merchDataSourceCache } =
+            document.createElement('merch-datasource'));
     }
 
     async doSearch(props) {
         this.search.update(props);
         const fragments = await this.aem.sites.cf.fragments
             .search(this.search)
-            .then((items) => items.map((item) => new Fragment(item)));
+            .then((items) => {
+                merchDataSourceCache.add(...items);
+                return items.map((item) => new Fragment(item));
+            });
         this.search.setResult(fragments);
     }
 }

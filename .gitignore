@@ -11,3 +11,5 @@ node_modules
 dist
 stats.json
 web-components/screenshots/Chrome/failed/*
+server.crt
+server.key

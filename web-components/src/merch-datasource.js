@@ -1,7 +1,9 @@
+import { AEM } from '@adobe/mas-commons';
 import { createTag } from './utils.js';
 
 const ODIN = 'odin';
 const ODIN_AUTHOR = 'odin-author';
+const ATTR_AEM_BUCKET = 'aem-bucket';
 
 const cardContent = {
     catalog: {
@@ -148,61 +150,52 @@ const cache = new FragmentCache();
  *                         Possible values: "odin".
  */
 export class MerchDataSource extends HTMLElement {
-    data = {};
+    /**
+     * @type {import('@adobe/mas-commons').AEM}
+     */
+    #aem;
+    source = ODIN;
+    cache = cache;
+
+    /**
+     * @type {string} fragment path
+     */
+    path;
 
     static get observedAttributes() {
         return ['source', 'path'];
     }
 
+    attributeChangedCallback(name, oldValue, newValue) {
+        this[name] = newValue;
+    }
+
     connectedCallback() {
+        const bucket =
+            this.getAttribute(ATTR_AEM_BUCKET) ??
+            document.querySelector('mas-studio')?.getAttribute(ATTR_AEM_BUCKET);
+        this.#aem = new AEM(bucket);
         this.fetchData();
     }
 
     refresh() {
+        this.cache.remove(this.path);
         this.fetchData();
     }
 
-    cache = cache;
-
     async fetchData() {
-        const source = this.getAttribute('source') ?? ODIN;
-        let path = this.getAttribute('path');
-        const originalPath = path;
-        if (!path) return;
-
-        const itemm = cache.get(path);
-        if (itemm) {
-            this.data = itemm;
+        let item = cache.get(this.path);
+        if (!item) {
+            item = await this.#aem.sites.cf.fragments.getCfByPath(this.path);
+        }
+        if (item) {
+            parseMerchCard(item, this.parentElement);
             this.render();
             return;
         }
 
-        if (![ODIN, ODIN_AUTHOR].includes(source)) return;
+        if (![ODIN, ODIN_AUTHOR].includes(this.source)) return;
 
-        let baseUrl = 'https://dev-odin.adobe.com';
-        let headers = {};
-        if (source === ODIN_AUTHOR) {
-            baseUrl = 'https://author-p22655-e59341.adobeaemcloud.com';
-            headers = { Authorization: `Bearer ${accessToken}` };
-        }
-        let response;
-        const cb = `?cb=${Math.round(Math.random() * 1000000)}`;
-        response = await fetch(`${baseUrl}${path}.cfm.gql.json${cb}`, {
-            headers,
-        });
-        if (response.status === 404) {
-            response = await fetch(
-                `${baseUrl}${originalPath}.cfm.gql.json${cb}`,
-                { headers },
-            );
-        }
-
-        const {
-            data: {
-                merchCardByPath: { item },
-            },
-        } = await response;
-        this.data = item;
         this.render();
     }
 
@@ -216,9 +209,6 @@ export class MerchDataSource extends HTMLElement {
                 ),
             ].map((el) => el.onceSettled()),
         );
-        parseMerchCard(this.data, this.parentElement).then(async () => {
-            this.parentElement.style.opacity = 1;
-        });
     }
 }
 
